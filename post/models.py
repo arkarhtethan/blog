@@ -2,7 +2,8 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
-
+from utils.unique_slug_field_generator import unique_slug_generator
+from django.db.models.signals import post_save
 # Create your models here.
 
 
@@ -18,7 +19,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=255)
 
-    content = RichTextUploadingField()
+    content = models.TextField()
 
     status = models.CharField(
 
@@ -36,7 +37,7 @@ class Post(models.Model):
 
     )
 
-    slug = models.SlugField(max_length=100)
+    slug = models.SlugField(max_length=100, blank=True)
 
     publish = models.DateTimeField(default=timezone.now)
 
@@ -51,3 +52,12 @@ class Post(models.Model):
     def __str__(self):
 
         return self.title
+
+
+def blog_post_save_reciver(sender, instance, created, **kwargs):
+    post_save.disconnect(blog_post_save_reciver, sender=Post)
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+        instance.save()
+
+post_save.connect(blog_post_save_reciver, sender=Post)
