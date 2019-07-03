@@ -34,9 +34,6 @@
 
     <!-- Custom -->
 
-
-
-
     {% block css %}
 
 
@@ -51,13 +48,15 @@
 
 <body>
 
+    {% include 'snippets/navbar.html' %}
+
     {% block content %}
 
 
 
     {% endblock content %}
 
-
+    {% include 'snippets/footer.html' %}
 
     <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
 

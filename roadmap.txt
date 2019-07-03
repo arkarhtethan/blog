@@ -1,0 +1,23 @@
+Post
+
+    Model
+
+    HomeView
+
+    ListView
+
+    DetailView
+
+    responsive ui
+
+    add share functionality
+
+    add comment system
+
+    add rss fedd
+
+    add site map
+
+add admin panel
+
+API

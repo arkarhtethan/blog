@@ -1,0 +1,14 @@
+<div class="card p-3 col-lg-5 col-sm-12 mx-1 my-1">
+    <div class="card-bodyquote">
+        <p class="h5">
+            <a href="">
+                {{ post.title |truncatewords:"7" }}
+            </a>
+        </p>
+        <footer>
+            <small class="text-muted">
+                {{ post.publish | timesince }}
+            </small>
+        </footer>
+    </div>
+</div>
