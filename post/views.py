@@ -3,6 +3,7 @@ from django.views import generic
 from .models import Post, Tag
 # Create your views here.
 
+
 class BlogHome(generic.ListView):
 
     model = Post
@@ -14,6 +15,19 @@ class BlogHome(generic.ListView):
     def get_context_data(self):
 
         ctx = super().get_context_data()
+
+        ctx['tags'] = Tag.objects.all()
+
+        return ctx
+
+
+class PostDetailView(generic.DetailView):
+
+    model = Post
+
+    def get_context_data(self, *args, **kwargs):
+
+        ctx = super().get_context_data(*args, **kwargs)
 
         ctx['tags'] = Tag.objects.all()
 

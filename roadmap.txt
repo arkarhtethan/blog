@@ -1,16 +1,22 @@
 Post
 
-    Model
+    Model ------------------------------------------------> Done
 
-    HomeView
+    HomeView ------------------------------------------------> Done
 
-    ListView
+    ListView ------------------------------------------------> Done
 
-    DetailView
+    DetailView ------------------------------------------------> Done
 
-    responsive ui
+    responsive ui ------------------------------------------------> Done
 
     add share functionality
+
+    add search functionality
+
+    add search based on tag functionality
+    
+    add search based on keywords functionality
 
     add comment system
 
