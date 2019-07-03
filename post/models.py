@@ -6,6 +6,14 @@ from utils.unique_slug_field_generator import unique_slug_generator
 from django.db.models.signals import post_save
 # Create your models here.
 
+class Tag(models.Model):
+
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+
+        return self.name
+
 
 class Post(models.Model):
 
@@ -36,6 +44,8 @@ class Post(models.Model):
         on_delete=models.CASCADE,
 
     )
+
+    tags = models.ManyToManyField(Tag)
 
     slug = models.SlugField(max_length=100, blank=True)
 
