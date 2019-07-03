@@ -1,7 +1,8 @@
 from django.shortcuts import render
+from django.views import generic
 
 # Create your views here.
 
-def index(request):
+class BlogHome(generic.TemplateView):
 
-    return render(request, 'post/home.html')
+    template_name = 'post/home.html'

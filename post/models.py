@@ -55,9 +55,15 @@ class Post(models.Model):
 
 
 def blog_post_save_reciver(sender, instance, created, **kwargs):
+
     post_save.disconnect(blog_post_save_reciver, sender=Post)
+
     if not instance.slug:
+
         instance.slug = unique_slug_generator(instance)
+
         instance.save()
+
+    post_save.connect(blog_post_save_reciver, sender=Post)
 
 post_save.connect(blog_post_save_reciver, sender=Post)
