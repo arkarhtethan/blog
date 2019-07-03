@@ -1,7 +1,77 @@
 {% extends 'base.html' %}
 
 
+{% block title %}
+Welcome
+{% endblock title %}
+
+
 {% block content %}
-    hello
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+
+            <div class="row">
+
+                {% for post in object_list %}
+                {% include 'snippets/post_card.html' with post=post %}
+                {% endfor %}
+            </div>
+
+        </div>
+        <div class="col-lg-4">
+
+            <!-- Search Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Search</h5>
+                <div class="card-body">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Tags</h5>
+                <div class="card-body">
+                    <div class="row">
+
+                        {% for tag in tags %}
+
+
+                        <div class="col-lg-6">
+                            <p>
+                                <a href="#">{{ tag.name }}</a>
+                            </p>
+                            <!-- <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a href="#">Web Design</a>
+                                </li>
+                                <li>
+                                    <a href="#">HTML</a>
+                                </li>
+                                <li>
+                                    <a href="#">Freebies</a>
+                                </li>
+                            </ul> -->
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+{% if is_paginated %}
+
+{% include 'snippets/pagination.html' with page_obj=page_obj %}
+
+{% endif %}
+
 {% endblock content %}
-    
