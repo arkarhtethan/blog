@@ -16,7 +16,7 @@ Post
     
     add search based on keywords functionality ------------------------------------------------> Done
 
-    add share functionality 
+    add share functionality ------------------------------------------------> Done
 
     add comment system
 
