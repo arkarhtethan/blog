@@ -38,6 +38,16 @@ Detail {{ post.title }}
 
             <hr>
 
+            
+            {% for post in similar_posts %}
+                <a href="{% url 'post:detail' slug=post.slug %}">
+                    post.title
+                </a>
+            {% endfor %}
+                
+
+            <hr>
+
             <div class="mb-4">
                 {% for comment in object.comment_set.all %}
 

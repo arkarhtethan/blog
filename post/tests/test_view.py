@@ -226,3 +226,34 @@ class TestUtilFunction(TestCase):
         self.assertEqual(posts.count(), 1)
 
         self.assertNotEqual(string, post.slug)
+
+
+class TestSearchTagView(TestCase):
+
+    def setUp(self):
+
+        self.url = reverse("post:search-tag")
+
+        self.client = Client()
+
+        self.response = self.client.get(self.url)
+
+        model = mommy.make("Tag")
+
+        search_url = "".join([self.url, f'?q={model.name}'])
+
+        self.response_search = Client().get(search_url)
+
+    def test_status_code(self):
+
+        self.assertEqual(self.response.status_code, 200)
+
+    def test_status_search_response_code(self):
+
+        # print(self.response_search)
+
+        self.assertEqual(self.response_search.status_code, 200)
+
+    def test_template_use(self):
+
+        self.assertTemplateUsed(self.response, 'post/home.html')

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from .models import Post, Tag
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.contrib import messages
 from .forms import ShareForm, ContactForm, CommentForm
 from django.urls import reverse
@@ -29,8 +29,37 @@ class PostDetailView(generic.DetailView):
 
         ctx['form'] = CommentForm
 
+        similar_post_tag = self.object.tags.values_list("id", flat=True)
+
+        similar_posts = Post.objects.filter(
+            tags__in=similar_post_tag).exclude(id=self.object.id)
+
+        similar_posts = similar_posts.annotate(
+            same_tags=Count('tags')).order_by('same_tags', '-publish')[:4]
+
+        ctx['similar_posts'] = similar_posts
+
         return ctx
 
+class SearchSimilarTag(generic.ListView):
+
+    template_name = 'post/home.html'
+
+    model = Post
+
+    def get_queryset(self, *args, **kwargs):
+
+        data = self.request.GET.get('q', None)
+
+        if data:
+
+            tag = get_object_or_404(Tag, name=data)
+
+            objs = tag.post_set.all()
+
+            return objs
+
+        return super().get_queryset()
 
 class SearchView(generic.View):
 
@@ -45,9 +74,7 @@ class SearchView(generic.View):
             queryset = Post.objects.filter(
                 Q(title__icontains=data) |
                 Q(content__icontains=data) |
-                Q(author__username__icontains=data) |
-                Q(tags__name__icontains=data)
-
+                Q(author__username__icontains=data)
             )
 
             ctx = {
