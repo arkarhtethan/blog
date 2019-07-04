@@ -10,19 +10,23 @@ Post
 
     responsive ui ------------------------------------------------> Done
 
-    add share functionality
+    add search functionality ------------------------------------------------> Done
 
-    add search functionality
-
-    add search based on tag functionality
+    add search based on tag functionality ------------------------------------------------> Done
     
-    add search based on keywords functionality
+    add search based on keywords functionality ------------------------------------------------> Done
+
+    add share functionality 
 
     add comment system
 
     add rss fedd
 
     add site map
+
+    contact
+
+    about
 
 add admin panel
 

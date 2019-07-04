@@ -23,10 +23,11 @@ Detail {{ post.title }}
             <hr>
 
             <!-- Date/Time -->
-            <p>{{ object.publish | timesince }} ago </p>
+            <p>{{ object.publish | timesince }} ago.</p>
 
             <hr>
-
+            
+            <a href="{% url 'post:share' pk=object.pk %}" class="text-success">share</a> this post 
             <hr>
 
             <!-- Post Content -->
