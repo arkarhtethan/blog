@@ -18,15 +18,13 @@ Post
 
     add share functionality ------------------------------------------------> Done
 
-    add comment system
+    add comment system ------------------------------------------------> Done
 
     add rss fedd
 
     add site map
 
     contact ------------------------------------------------> Done
-
-    about
 
 add admin panel
 

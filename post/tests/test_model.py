@@ -1,6 +1,6 @@
 from django.test import TestCase
 from model_mommy import mommy
-from post.models import Post, Tag
+from post.models import Post, Tag, Comment
 
 
 class TestPostModel(TestCase):
@@ -35,3 +35,19 @@ class TestTagModel(TestCase):
     def test_str(self):
 
         self.assertEqual(str(self.model), self.model.name)
+
+class TestCommentModel(TestCase):
+    
+    def setUp(self):
+
+        self.model = mommy.make("Comment")
+
+    def test_instance(self):
+
+        self.assertTrue(isinstance(self.model, Comment))
+
+    def test_str(self):
+
+        self.assertEqual(str(self.model), self.model.email)
+
+

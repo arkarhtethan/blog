@@ -1,4 +1,4 @@
-from . import random_string_generator
+from .random_string_generator import random_string_generator
 from django.utils.text import slugify
 
 def unique_slug_generator(instance, new_slug=None):

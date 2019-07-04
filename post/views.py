@@ -36,21 +36,29 @@ class SearchView(generic.View):
 
     def get(self, request):
 
-        data = request.GET.get('q', None)
-
-        queryset = Post.objects.filter(
-            Q(title__icontains=data) |
-            Q(content__icontains=data) |
-            Q(author__username__icontains=data) |
-            Q(tags__name__icontains=data)
-
-        )
-
         ctx = {
-            "object_list": queryset
         }
 
-        messages.info(request, f"Search result for {data}")
+        data = request.GET.get('q', None)
+
+        if data:
+            queryset = Post.objects.filter(
+                Q(title__icontains=data) |
+                Q(content__icontains=data) |
+                Q(author__username__icontains=data) |
+                Q(tags__name__icontains=data)
+
+            )
+
+            ctx = {
+                "object_list": queryset
+            }
+
+            messages.info(request, f"Search result for {data}")
+
+            return render(request, 'post/home.html', ctx)
+
+        ctx['object_list'] = Post.objects.all()
 
         return render(request, 'post/home.html', ctx)
 
@@ -133,28 +141,27 @@ class ContactView(generic.TemplateView):
 
             subject = "Contact from user"
 
-            send_mail(subject, message, from_email, ['myblog@myblog.com',])
+            send_mail(subject, message, from_email, ['myblog@myblog.com', ])
 
             context['email_sent'] = True
 
         return render(request, 'post/contact.html', context)
 
+
 def post_comment(request, slug):
 
-    if request.method == "POST":    
-        
-        form =  CommentForm(request.POST or None)
+    if request.method == "POST":
+
+        form = CommentForm(request.POST or None)
 
         post = get_object_or_404(Post, slug=slug)
 
         ctx = {
             "slug": slug,
-            "object":post,
-            'form':form,
+            "object": post,
+            'form': form,
         }
         if form.is_valid():
-
-            print('form valid')
 
             comment = form.save(commit=False)
 
@@ -162,13 +169,8 @@ def post_comment(request, slug):
 
             comment.save()
 
-            print(comment)
-
             ctx['new_comment'] = comment
 
-            return render(request,'post/post_detail.html',ctx)
+            return render(request, 'post/post_detail.html', ctx)
 
-    return redirect(reverse('post:detail',kwargs={"slug":slug}))
-    
-
-
+    return redirect(reverse('post:detail', kwargs={"slug": slug}))
