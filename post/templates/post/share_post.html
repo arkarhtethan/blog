@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 
-{% load crispy_forms_tags %}
-
 {% block title %}
 Share
 {% endblock title %}
@@ -34,13 +32,7 @@ Share
             </div>
             {% endif %}
             <h3>Share "{{ instance }}" by email.</h3>
-
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <input type="submit" value="Share" class="btn btn-primary">
-            </form>
-
+            {% include 'snippets/form.html' with form=form %}
         </div>
         <div class="col-lg-4">
             {% include 'snippets/sidebar.html' %}

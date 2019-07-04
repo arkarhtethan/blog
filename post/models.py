@@ -63,6 +63,25 @@ class Post(models.Model):
 
         return self.title
 
+class Comment(models.Model):
+
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    email = models.EmailField()
+
+    body = models.TextField()
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+
+        ordering = ("-updated_at",)
+
+    def __str__(self):
+
+        return self.email
 
 def blog_post_save_reciver(sender, instance, created, **kwargs):
 
