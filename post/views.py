@@ -201,3 +201,4 @@ def post_comment(request, slug):
             return render(request, 'post/post_detail.html', ctx)
 
     return redirect(reverse('post:detail', kwargs={"slug": slug}))
+

@@ -4,7 +4,9 @@ from django.db import models
 from django.utils import timezone
 from utils.unique_slug_field_generator import unique_slug_generator
 from django.db.models.signals import post_save
+from django.urls import reverse
 # Create your models here.
+
 
 class Tag(models.Model):
 
@@ -59,12 +61,17 @@ class Post(models.Model):
 
         ordering = ("-publish", )
 
+    def get_absolute_url(self):
+        
+        return reverse('post:detail', kwargs={'slug': self.slug})
+
     def __str__(self):
 
         return self.title
 
+
 class Comment(models.Model):
-    
+
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
     email = models.EmailField()
@@ -83,6 +90,7 @@ class Comment(models.Model):
 
         return self.email
 
+
 def blog_post_save_reciver(sender, instance, created, **kwargs):
 
     post_save.disconnect(blog_post_save_reciver, sender=Post)
@@ -94,5 +102,6 @@ def blog_post_save_reciver(sender, instance, created, **kwargs):
         instance.save()
 
     post_save.connect(blog_post_save_reciver, sender=Post)
+
 
 post_save.connect(blog_post_save_reciver, sender=Post)
