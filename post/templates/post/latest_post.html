@@ -1,0 +1,12 @@
+<div class="card my-3">
+    <div class="card-header">
+        <h4>Latest post form blog</h4>
+    </div>
+    <div class="card-body">
+        {% for post in latest_posts %}
+        <a href="{% url 'post:detail' slug=post.slug %}">
+            {{ post.title }}
+        </a>
+        {% endfor %}
+    </div>
+</div>

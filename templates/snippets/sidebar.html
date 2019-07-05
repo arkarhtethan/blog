@@ -1,3 +1,4 @@
+{% load blog_tags %}
 <!-- Search Widget -->
 <div class="card my-4">
     <h5 class="card-header">Search</h5>
@@ -11,6 +12,27 @@
                 </span>
             </div>
         </form>
+    </div>
+</div>
+
+<div>
+    This is my blog i've written {% get_total_post_count %} posts.<br>
+    <a href="{% url 'post:post_feed' %}">Subscribe to my rss feed</a>
+    {% get_latest_posts %}
+</div>
+
+{% get_most_commented_post as most_commented_post %}
+
+<div class="card my-3">
+    <div class="card-header">
+        <h4>Most commented posts form blog</h4>
+    </div>
+    <div class="card-body">
+        {% for post in most_commented_post %}
+        <a href="{% url 'post:detail' slug=post.slug %}">
+            {{ post.title }}
+        </a>
+        {% endfor %}
     </div>
 </div>
 

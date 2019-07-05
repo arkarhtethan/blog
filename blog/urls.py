@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from post.sitemaps import PostSitemap
 from django.contrib.sitemaps.views import sitemap
+from post.api.routers import router
 
 sitemaps = {
     'posts': PostSitemap
@@ -27,6 +28,7 @@ sitemaps = {
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('post/', include('post.urls', namespace='post')),
+    path('api/', include(router.urls), name="api"),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
          name='django.contrib.sitemaps.views.sitemap')
 ]

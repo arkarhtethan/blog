@@ -217,8 +217,6 @@ class TestUtilFunction(TestCase):
 
         post = mommy.make("Post")
 
-        # print(post.slug)
-
         string = unique_slug_generator(post, post.slug)
 
         posts = Post.objects.filter(slug=post.slug)
@@ -249,8 +247,6 @@ class TestSearchTagView(TestCase):
         self.assertEqual(self.response.status_code, 200)
 
     def test_status_search_response_code(self):
-
-        # print(self.response_search)
 
         self.assertEqual(self.response_search.status_code, 200)
 
