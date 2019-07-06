@@ -1,9 +1,9 @@
 # Simple Djanog Blog
 > This is a project where admin can write post
 
-[![NPM Version][npm-image]][npm-url]
+[![Django Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
+
 
 One to two paragraph statement about your product and what it does.
 
@@ -37,7 +37,7 @@ python manage.py runserver
 
 ## Meta
 
-Kaung Myat Han – [@YourTwitter](https://twitter.com/dbader_org) – arkarhtethan@gmail.com
+Kaung Myat Han – arkarhtethan@gmail.com
 
 Distributed under the XYZ license. See ``LICENSE`` for more information.
 
