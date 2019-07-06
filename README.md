@@ -1,20 +1,13 @@
 # Simple Djanog Blog
 > This is a project where admin can write post
-
-[![Django Version][npm-image]][npm-url]
+> 
 [![Build Status][travis-image]][travis-url]
-
-
-One to two paragraph statement about your product and what it does.
-
-![](header.png)
 
 ## Installation
 
 
 ```
 git clone https://github.com/arkarhtethan/real-estate.git
-
 ```
 
 ```
