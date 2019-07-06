@@ -1,4 +1,4 @@
-# Simple Djanog Blog
+# Simple Django Blog
 > This is a project where admin can write post
 > 
 [![Build Status][travis-image]][travis-url]
@@ -7,16 +7,16 @@
 
 
 ```
-git clone https://github.com/arkarhtethan/real-estate.git
+git clone https://github.com/arkarhtethan/blog.git
 ```
 
 ```
-tar -xzvf real-estate.tar.gz
+tar -xzvf blog.tar.gz
 ```
 
 
 ```
-cd real-estate
+cd blog
 ```
 
 ```
